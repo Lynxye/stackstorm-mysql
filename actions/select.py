@@ -1,4 +1,4 @@
-import MySQLdb
+import pymysql
 
 from lib.base import MySQLBaseAction
 from st2client.client import Client
@@ -34,5 +34,5 @@ class MySQLSelectAction(MySQLBaseAction):
                 return key
             else:
                 return output
-        except MySQLdb.Error as e:  # pylint: disable=no-member
+        except pymysql.Error as e:  # pylint: disable=no-member
             raise Exception(e)

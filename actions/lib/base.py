@@ -1,5 +1,5 @@
-import MySQLdb
-import MySQLdb.cursors
+import pymysql
+import pymysql.cursors
 import six
 
 from datetime import datetime
@@ -9,10 +9,11 @@ __all__ = [
     'MySQLBaseAction'
 ]
 
-try:  # Python 2
-    unicode = unicode
-except NameError:  # Python 3
-    unicode = str
+# try:  # Python 2
+#     unicode = unicode
+# except NameError:  # Python 3
+#     unicode = str
+unicode = str
 
 
 class MySQLBaseAction(Action):
@@ -27,11 +28,11 @@ class MySQLBaseAction(Action):
                                 user=self.db_config.get('user', None),
                                 passwd=self.db_config.get('pass', None),
                                 db=self.db_config.get('db', None),
-                                cursorclass=MySQLdb.cursors.DictCursor)
+                                cursorclass=pymysql.cursors.DictCursor)
 
     def manual_conn(self, host, user, passwd, db,
-                    cursorclass=MySQLdb.cursors.DictCursor):
-        return MySQLdb.connect(host=host,
+                    cursorclass=pymysql.cursors.DictCursor):
+        return pymysql.connect(host=host,
                                user=user,
                                passwd=passwd,
                                db=db,
@@ -39,7 +40,7 @@ class MySQLBaseAction(Action):
 
     def _escape_string(self, item):
         return six.ensure_str(
-            MySQLdb.escape_string(unicode(item).encode('utf-8')))  # pylint: disable=no-member
+            pymysql.escape_string(unicode(item).encode('utf-8')))  # pylint: disable=no-member
 
     def _list_to_string(self, data, quotes=True):
         output = ""

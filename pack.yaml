@@ -1,13 +1,13 @@
 ---
-name : mysql
+name : pymysql
 description : Mysql integration pack
 keywords :
-  - mysql
+  - pymysql
   - database
 version: 1.0.0
-author : st2-dev
-email : info@stackstorm.com
+author : Leon
+email : lynxye@gmail.com
 contributors:
-  - Joe Topjian <joe@topjian.net>
+  - Leon Ye <lynxye@gmail.com>
 python_versions:
   - "3"
